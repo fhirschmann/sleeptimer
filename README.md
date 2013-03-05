@@ -5,6 +5,8 @@ a shutdown after a preset amount of time. It can be controlled by a single
 button on an infrared remote control (via LIRC) or by a single key on the
 keyboard.
 
+![halttimer](http://static.0x0b.de/misc/halttimer.png)
+
 ## Installation
 
 Halttimer is written in C and needs the following packages on Debian:
