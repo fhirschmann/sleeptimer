@@ -40,7 +40,7 @@ your window manager's means to bind the key of your choice to:
 
 ## Usage
 
-Halttimer needs to be running in the background, this can be accomplished
+Halttimer needs to be running in the background. This can be accomplished
 by adding `halttimer &` to your startup configuration. Please consult
 the manpage for a detailed overview of the options. You may be interested
 in `-m` and `-d`, which set the maximum timeout and the time decrement in
