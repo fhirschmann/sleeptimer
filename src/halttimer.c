@@ -82,7 +82,7 @@ int run() {
         char *code, *x, ret;
         static struct lirc_config *lirc_config = NULL;
 
-        if (lirc_init("lirctimer", 1) == -1) {
+        if (lirc_init("halttimer", 1) == -1) {
             fprintf(stderr, "Could not initialize LIRC system.");
             exit(EXIT_FAILURE);
         }
