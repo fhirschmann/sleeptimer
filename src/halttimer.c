@@ -198,7 +198,8 @@ int main(int argc, char *argv[]) {
                 opts.max = atoi(optarg);
                 break;
             case 'h':
-                printf("usage: lirctimer [-e command] ... [-c color] [-f font]\n\n");
+                printf("usage: lirctimer [-e command] [-m max_time]"
+                       "[-d decrement_time] ... [-c color] [-f font]\n\n");
                 printf("please see the man page for more options.\n");
                 return EXIT_SUCCESS;
             default:
