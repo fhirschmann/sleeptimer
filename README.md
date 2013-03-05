@@ -35,7 +35,7 @@ Add the following to your `~/.lircrc` if LIRC is desired:
         repeat = 1
     end
 
-If you with to bind Halttimer to a key on your keyboard, use
+If you wish to bind Halttimer to a key on your keyboard, use
 your window manager's means to bind the key of your choice to:
 
     kill -SIGUSR1 `pidof halttimer`
