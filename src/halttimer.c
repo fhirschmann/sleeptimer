@@ -31,6 +31,7 @@
 #include <lirc/lirc_client.h>
 #endif
 #include <locale.h>
+#include "config.h"
 #include "gettext.h"
 #include "localedir.h"
 #define _(string) gettext (string)
@@ -248,7 +249,7 @@ Options:\n\
   -m, --max         maximum time of the counter in minutes\n"), stdout);
                 return EXIT_SUCCESS;
             case 'v':
-                printf("halttimer 0.1\n");
+                printf("halttimer %s\n", VERSION);
                 return EXIT_SUCCESS;
             default:
                 break;
