@@ -1,6 +1,6 @@
 # halttimer
 
-Halttimer is a LIRC-enabled timer with an on-screen-display that initiates
+Halttimer is a LIRC-capable timer with an on-screen-display that initiates
 a shutdown after a preset amount of time. It can be controlled by a single
 button on an infrared remote control (via LIRC) or by a single key on the
 keyboard.
@@ -25,5 +25,87 @@ It can then be built by executing:
     make install
 
 ## Manual
-
-Please consult the manual page, [halttimer(1)](http://halttimer.0x0b.de/halttimer.html) for details.
+    HALTTIMER(1)			 User Commands			  HALTTIMER(1)
+    
+    
+    
+    NAME
+           halttimer - a simple single button lirc-capable shut down timer
+    
+    SYNOPSIS
+           halttimer [OPTION]...
+    
+    DESCRIPTION
+           Waits  for  LIRC  events or SIGUSR1 and sets a timer that will initiate
+           the shut down sequence when  the  time  is  up.	 The  timer's  timeout
+           decreases with each keypress by a specified amount of time.
+    
+    OPTIONS
+           -f, --font
+    	      font of the OSD text
+    
+           -c, --color
+    	      color of the OSD text
+    
+           -t, --timeout
+    	      timeout of the OSD text in seconds
+    
+           -y, --y-offset
+    	      veritical offset of the OSD text in pixels
+    
+           -x, --x-offset
+    	      horizontal offset of the OSD text in pixels
+    
+           -a, --align
+    	      alignment of the OSD text; one of {l,c,r}
+    
+           -e, --execute
+    	      command to execute when the time is up
+    
+           -d, --decrement
+    	      number of minutes to decrement the counter by
+    
+           -m, --max
+    	      maximum time of the counter in minutes
+    
+    EXAMPLES
+           Use a different shutdown command:
+           halttimer -e "sudo halt"
+    
+           Use a different font:
+           halttimer -f "-*-arial-*-r-normal--100-*-*-*-*-*-*-*"
+    
+           Set the maximum timeout to 120min with decrements of 10min:
+           halttimer -m 120 -d 10
+    
+    CONFIGURATION
+           Halttimer  can  be  configured  to wait for a LIRC signal, an arbitrary
+           command, or both.
+    
+           LIRC Configuration
+           If LIRC is desired, append the following to your ~/.lircrc
+    
+    	   begin
+    	       prog = halttimer
+    	       button = YOUR_BUTTON
+    	       config = sleep
+    	       repeat = 1
+    	   end
+    
+           And press YOUR_BUTTON on your remote control. The name of a button  can
+           be obtained using irw(1).
+    
+           Keyboard Configuration
+           You  can control halttimer by simplify sending the SIGUSR1 signal: kill
+           -SIGUSR `pidof halttimer`.  This command could be bound	to  a  key  on
+           your keyboard.
+    
+    AUTHORS
+           halttimer was written by Fabian Hirschmann <fabian@hirschm.net>.
+    
+    SEE ALSO
+           irw(1).
+    
+    
+    
+    halttimer 0.1			  March 2013			  HALTTIMER(1)

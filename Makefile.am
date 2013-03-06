@@ -16,3 +16,7 @@
 # along with Halttimer.  If not, see <http://www.gnu.org/licenses/>.
 
 SUBDIRS = src man
+
+README.md: man/halttimer.1
+	sed -i '/## Manual/q' README.md
+	nroff -man man/halttimer.1 | col -b | awk '{ print "    " $$0 }' >> README.md
