@@ -23,6 +23,8 @@ if HAVE_LIRC
 	halttimer_LDFLAGS += -llirc_client
 endif
 
+DISTCLEANFILES = localedir.h
+
 localedir.h: Makefile
 	echo '#define LOCALEDIR "$(localedir)"' >$@
 halttimer.o: localedir.h

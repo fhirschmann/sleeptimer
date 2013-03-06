@@ -21,7 +21,7 @@ MAINTAINERCLEANFILES = $(man_MANS)
 
 common_mandeps = $(top_srcdir)/configure.ac
 
-halttimer.1: $(top_srcdir)/src/halttimer.c inc.h2m $(common_mandeps)
+halttimer.1: $(top_srcdir)/src/halttimer.c $(common_mandeps)
 	$(HELP2MAN) \
 		--no-info \
 		--include=inc.h2m \

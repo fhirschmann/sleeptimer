@@ -23,4 +23,4 @@ README.md: man/halttimer.1
 
 ACLOCAL_AMFLAGS = -I m4
 
-EXTRA_DIST = config.rpath m4/ChangeLog
+EXTRA_DIST = config.rpath m4/ChangeLog src/gettext.h
