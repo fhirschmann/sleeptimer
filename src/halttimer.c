@@ -107,12 +107,12 @@ int run() {
 
         if (lirc_init("halttimer", 1) == -1) {
             fputs(_("Could not initialize LIRC system."), stderr);
-            exit(EXIT_FAILURE);
+            return EXIT_FAILURE;
         }
 
         /* Use the default config file in ~/.lircrc */
         if (lirc_readconfig(NULL, &lirc_config, NULL) != 0) {
-            exit(EXIT_FAILURE);
+            return EXIT_FAILURE;
         }
 
         /* Wait for keypresses. */
@@ -181,7 +181,7 @@ int main(int argc, char *argv[]) {
 
     while (1) {
         option_index = 0;
-        c = getopt_long(argc, argv, "f:c:e:t:d:m:a:y:x:h:v",
+        c = getopt_long(argc, argv, "f:c:e:t:d:m:a:y:x:hv",
                 long_options, &option_index);
 
         if (c == -1)
@@ -213,7 +213,7 @@ int main(int argc, char *argv[]) {
                     osd_opts.align = XOSD_center;
                 } else {
                     fprintf(stderr, "Invalid argument to --align [l|c|r].\n");
-                    return 1;
+                    return EXIT_FAILURE;
                 }
                 break;
             case 'e':
@@ -252,7 +252,7 @@ Options:\n\
                 printf("halttimer %s\n", VERSION);
                 return EXIT_SUCCESS;
             default:
-                break;
+                return EXIT_FAILURE;
         }
     }
 
