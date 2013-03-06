@@ -1,3 +1,5 @@
+[name]
+halttimer - a simple single-button lirc-capable shut down timer
 [configuration]
 Halttimer can be configured to wait for a LIRC signal, an arbitrary command, or both.
 .LP
@@ -42,3 +44,7 @@ halttimer -f "-*-arial-*-r-normal--100-*-*-*-*-*-*-*"
 .B Set the maximum timeout to 120min with decrements of 10min:
 .br
 halttimer -m 120 -d 10
+[files]
+~/.lircrc
+    File that can be used to instruct halttimer to wait for a specific
+    button on a remote control.

@@ -30,7 +30,7 @@ It can then be built by executing:
     
     
     NAME
-           halttimer - a simple single button lirc-capable shut down timer
+           halttimer - a simple single-button lirc-capable shut down timer
     
     SYNOPSIS
            halttimer [OPTION]...
@@ -67,6 +67,11 @@ It can then be built by executing:
     
            -m, --max
     	      maximum time of the counter in minutes
+    
+    FILES
+           ~/.lircrc
+    	   File that can be used to instruct halttimer to wait for a specific
+    	   button on a remote control.
     
     EXAMPLES
            Use a different shutdown command:

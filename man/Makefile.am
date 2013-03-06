@@ -21,11 +21,10 @@ MAINTAINERCLEANFILES = $(man_MANS)
 
 common_mandeps = $(top_srcdir)/configure.ac
 
-halttimer.1: $(top_srcdir)/src/halttimer.c help2man.include $(common_mandeps)
+halttimer.1: $(top_srcdir)/src/halttimer.c inc.h2m $(common_mandeps)
 	$(HELP2MAN) \
-		--name="a simple single button lirc-capable shut down timer" \
 		--no-info \
-		--include=help2man.include \
+		--include=inc.h2m \
 		$(top_srcdir)/src/halttimer -o $@
 
 print: halttimer.1
