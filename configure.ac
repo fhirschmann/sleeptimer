@@ -15,7 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Halttimer.  If not, see <http://www.gnu.org/licenses/>.
 
-AC_INIT(halttimer, 0.1, [fabian@hirschm.net], [halttimer])
+AC_INIT(halttimer, 0.1, [fabian@hirschm.net], [halttimer],
+        http://github.com/fhirschmann/halttimer.git)
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 AC_PROG_CC
 AM_PROG_CC_C_O
