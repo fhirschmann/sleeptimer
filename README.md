@@ -1,6 +1,6 @@
 # halttimer
 
-Halttimer is a LIRC-enabled timer with an on-screen-display that issues
+Halttimer is a LIRC-enabled timer with an on-screen-display that initiates
 a shutdown after a preset amount of time. It can be controlled by a single
 button on an infrared remote control (via LIRC) or by a single key on the
 keyboard.
