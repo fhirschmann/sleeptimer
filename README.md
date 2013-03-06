@@ -1,6 +1,6 @@
 # halttimer
 
-Halttimer is a LIRC-capable timer with an on-screen-display that initiates
+Halttimer is a LIRC-aware timer with an on-screen-display that initiates
 a shutdown after a preset amount of time. It can be controlled by a single
 button on an infrared remote control (via LIRC) or by a single key on the
 keyboard.
@@ -30,7 +30,7 @@ It can then be built by executing:
     
     
     NAME
-           halttimer - a simple single-button lirc-capable shut down timer
+           halttimer - a simple single-button lirc-aware shut down timer
     
     SYNOPSIS
            halttimer [OPTION]...

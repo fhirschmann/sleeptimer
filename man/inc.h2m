@@ -1,5 +1,5 @@
 [name]
-halttimer - a simple single-button lirc-capable shut down timer
+halttimer - a simple single-button lirc-aware shut down timer
 [configuration]
 Halttimer can be configured to wait for a LIRC signal, an arbitrary command, or both.
 .LP
