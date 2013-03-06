@@ -30,7 +30,10 @@
 #ifdef HAVE_LIRC
 #include <lirc/lirc_client.h>
 #endif
-
+#include <locale.h>
+#include "gettext.h"
+#include "localedir.h"
+#define _(string) gettext (string)
 
 typedef struct options {
     char *execute;
@@ -62,7 +65,7 @@ long timevaldiff(struct timeval *from, struct timeval *to) {
 }
 
 void catch_alarm(int sig) {
-    xosd_display(osd, 0, XOSD_string, "Shutdown initiated");
+    xosd_display(osd, 0, XOSD_string, _("Shutdown initiated"));
     sleep(2);
     system(opts.execute);
 }
@@ -86,7 +89,7 @@ void catch_usr1(int sig) {
     alarm(new);
 
     if (new == 0) {
-        xosd_display(osd, 0, XOSD_string, "Off");
+        xosd_display(osd, 0, XOSD_string, _("Off"));
     } else {
         char msg[20];
         sprintf(msg, "%d", new / 60, 20);
@@ -102,7 +105,7 @@ int run() {
         static struct lirc_config *lirc_config = NULL;
 
         if (lirc_init("halttimer", 1) == -1) {
-            fprintf(stderr, "Could not initialize LIRC system.");
+            fputs(_("Could not initialize LIRC system."), stderr);
             exit(EXIT_FAILURE);
         }
 
@@ -136,6 +139,10 @@ int run() {
 }
 
 int main(int argc, char *argv[]) {
+    setlocale(LC_ALL, "");
+    bindtextdomain(PACKAGE, LOCALEDIR);
+    textdomain(PACKAGE);
+
     /* Default values. */
     xosd_options osd_opts = {
         .font = "-*-helvetica-*-r-normal--100-*-*-*-*-*-*-*",
@@ -218,13 +225,15 @@ int main(int argc, char *argv[]) {
                 opts.max = atoi(optarg);
                 break;
             case 'h':
-                fputs("\
+                fputs(_("\
 Usage: halttimer [OPTION]...\n\
 Waits for LIRC events or SIGUSR1 and sets a timer that\n\
 will initiate the shut down sequence when the time is up.\n\
 The timer's timeout decreases with each keypress by a specified\n\
 amount of time.\n\
 \n\
+"), stdout);
+                fputs(_("\
 Options:\n\
   -f, --font        font of the OSD text\n\
   -c, --color       color of the OSD text\n\
@@ -232,10 +241,11 @@ Options:\n\
   -y, --y-offset    veritical offset of the OSD text in pixels\n\
   -x, --x-offset    horizontal offset of the OSD text in pixels\n\
   -a, --align       alignment of the OSD text; one of {l,c,r}\n\
-\
+"), stdout);
+                fputs(_("\n\
   -e, --execute     command to execute when the time is up\n\
   -d, --decrement   number of minutes to decrement the counter by\n\
-  -m, --max         maximum time of the counter in minutes\n", stdout);
+  -m, --max         maximum time of the counter in minutes\n"), stdout);
                 return EXIT_SUCCESS;
             case 'v':
                 printf("halttimer 0.1\n");

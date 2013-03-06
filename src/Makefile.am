@@ -22,3 +22,7 @@ halttimer_LDFLAGS = @XOSD_LDFLAGS@
 if HAVE_LIRC
 	halttimer_LDFLAGS += -llirc_client
 endif
+
+localedir.h: Makefile
+	echo '#define LOCALEDIR "$(localedir)"' >$@
+halttimer.o: localedir.h
