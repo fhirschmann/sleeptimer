@@ -21,9 +21,18 @@ MAINTAINERCLEANFILES = $(man_MANS)
 
 common_mandeps = $(top_srcdir)/configure.ac
 
-halttimer.1: $(top_srcdir)/src/halttimer.c $(common_mandeps)
+halttimer.1: $(top_srcdir)/src/halttimer.c help2man.include $(common_mandeps)
 	$(HELP2MAN) \
-		--name="a simple shut down timer" \
+		--name="a simple single button lirc-capable shut down timer" \
 		--no-info \
 		--include=help2man.include \
 		$(top_srcdir)/src/halttimer -o $@
+
+print: halttimer.1
+	nroff -man halttimer.1
+
+halttimer.html: halttimer.1
+	groff -mandoc -Thtml halttimer.1 > halttimer.html
+
+man-upload: halttimer.html
+	scp halttimer.html 0x0b.de:/var/www/halttimer.0x0b.de/htdocs

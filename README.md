@@ -24,29 +24,6 @@ It can then be built by executing:
     make
     make install
 
-## Configuration
+## Manual
 
-Add the following to your `~/.lircrc` if LIRC is desired:
-
-    begin
-        prog = halttimer
-        button = YOUR_BOTTON
-        config = sleep
-        repeat = 1
-    end
-
-If you wish to bind Halttimer to a key on your keyboard, use
-your window manager's means to bind the key of your choice to:
-
-    kill -SIGUSR1 `pidof halttimer`
-
-## Usage
-
-Halttimer needs to be running in the background. This can be accomplished
-by adding `halttimer &` to your startup configuration. Please consult
-the manpage for a detailed overview of the options. You may be interested
-in `-m` and `-d`, which set the maximum timeout and the time decrement in
-minutes, respectively.
-
-Once it is running, you can start pressing the button on your remote control
-or keyboard.
+Please consult the manual page, [halttimer(1)](http://halttimer.0x0b.de/halttimer.html) for details.

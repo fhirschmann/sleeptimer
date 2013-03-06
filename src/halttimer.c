@@ -222,11 +222,13 @@ int main(int argc, char *argv[]) {
 Usage: halttimer [OPTION]...\n\
 Waits for LIRC events or SIGUSR1 and sets a timer that\n\
 will initiate the shut down sequence when the time is up.\n\
+The timer's timeout decreases with each keypress by a specified\n\
+amount of time.\n\
 \n\
 Options:\n\
   -f, --font        font of the OSD text\n\
   -c, --color       color of the OSD text\n\
-  -t, --tiemout     timeout of the OSD text in seconds\n\
+  -t, --timeout     timeout of the OSD text in seconds\n\
   -y, --y-offset    veritical offset of the OSD text in pixels\n\
   -x, --x-offset    horizontal offset of the OSD text in pixels\n\
   -a, --align       alignment of the OSD text; one of {l,c,r}\n\
