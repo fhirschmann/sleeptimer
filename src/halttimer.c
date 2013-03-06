@@ -139,13 +139,14 @@ int main(int argc, char *argv[]) {
         {"font", required_argument, 0, 'f'},
         {"color", required_argument, 0, 'c'},
         {"execute", required_argument, 0, 'e'},
-        {"osd-timeout", required_argument, 0, 'o'},
+        {"timeout", required_argument, 0, 'o'},
         {"decrement", required_argument, 0, 'd'},
         {"max", required_argument, 0, 'm'},
         {"align", required_argument, 0, 'a'},
         {"y-offset", required_argument, 0, 'y'},
         {"x-offset", required_argument, 0, 'x'},
         {"help", no_argument, 0, 'h'},
+        {"version", no_argument, 0, 'v'},
         {NULL, no_argument, NULL, 0}
     };
 
@@ -153,7 +154,7 @@ int main(int argc, char *argv[]) {
 
     while (1) {
         option_index = 0;
-        c = getopt_long(argc, argv, "f:c:e:o:d:m:a:y:x:h",
+        c = getopt_long(argc, argv, "f:c:e:t:d:m:a:y:x:h:v",
                 long_options, &option_index);
 
         if (c == -1)
@@ -166,7 +167,7 @@ int main(int argc, char *argv[]) {
             case 'c':
                 osd_opts.color = optarg;
                 break;
-            case 'o':
+            case 't':
                 osd_opts.timeout = atoi(optarg);
                 opts.threshold = osd_opts.timeout;
                 break;
@@ -198,12 +199,27 @@ int main(int argc, char *argv[]) {
                 opts.max = atoi(optarg);
                 break;
             case 'h':
-                printf("usage: lirctimer [-e command] [-m max_time]"
-                       "[-d decrement_time] ... [-c color] [-f font]\n\n");
-                printf("please see the man page for more options.\n");
+                fputs("\
+Usage: halttimer [OPTION]...\n\
+Waits for LIRC events or SIGUSR1 and sets a timer that\n\
+will initiate the shut down sequence when the time is up.\n\
+\n\
+Options:\n\
+  -f, --font        font of the OSD text\n\
+  -c, --color       color of the OSD text\n\
+  -t, --tiemout     timeout of the OSD text in seconds\n\
+  -y, --y-offset    veritical offset of the OSD text in pixels\n\
+  -x, --x-offset    horizontal offset of the OSD text in pixels\n\
+  -a, --align       alignment of the OSD text; one of {l,c,r}\n\
+\
+  -e, --execute     command to execute when the time is up\n\
+  -d, --decrement   number of minutes to decrement the counter by\n\
+  -m, --max         maximum time of the counter in minutes\n", stdout);
+                return EXIT_SUCCESS;
+            case 'v':
+                printf("halttimer 0.1\n");
                 return EXIT_SUCCESS;
             default:
-                abort();
                 break;
         }
     }
