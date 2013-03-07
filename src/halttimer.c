@@ -33,7 +33,6 @@
 #include <locale.h>
 #include "config.h"
 #include "gettext.h"
-#include "localedir.h"
 #define _(string) gettext (string)
 
 typedef struct options {

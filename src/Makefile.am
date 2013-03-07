@@ -15,16 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Halttimer.  If not, see <http://www.gnu.org/licenses/>.
 
+AM_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"
+
 bin_PROGRAMS = halttimer
 
-halttimer_SOURCES = halttimer.c
+halttimer_SOURCES = halttimer.c gettext.h
 halttimer_LDFLAGS = @XOSD_LDFLAGS@
 if HAVE_LIRC
 	halttimer_LDFLAGS += -llirc_client
 endif
 
-DISTCLEANFILES = localedir.h
-
-localedir.h: Makefile
-	echo '#define LOCALEDIR "$(localedir)"' >$@
-halttimer.o: localedir.h
+LDADD = $(LIBINTL)
