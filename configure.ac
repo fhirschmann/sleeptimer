@@ -15,16 +15,39 @@
 # You should have received a copy of the GNU General Public License
 # along with Halttimer.  If not, see <http://www.gnu.org/licenses/>.
 
+# Prelude.
 AC_INIT(halttimer, 0.1, [fabian@hirschm.net], [halttimer],
         http://github.com/fhirschmann/halttimer.git)
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
-AC_PROG_CC
-AM_PROG_CC_C_O
-AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_FILES([Makefile src/Makefile man/Makefile po/Makefile.in])
-AM_MISSING_PROG([HELP2MAN], [help2man])
+AM_GNU_GETTEXT_VERSION([0.18])
 AM_GNU_GETTEXT([external])
 
+# Checks for programs.
+AC_PROG_CC
+AM_PROG_CC_C_O
+AM_MISSING_PROG([HELP2MAN], [help2man])
+
+AC_PATH_PROG([xosdconfigpath], [xosd-config], [no])
+if test "$xosdconfigpath" = "no"; then
+    AC_MSG_ERROR([xosd-config binary is required])
+fi
+
+XOSD_CFLAGS=`$xosdconfigpath --cflags`
+if test -z "$XOSD_CFLAGS"; then
+    AC_MSG_RESULT([not found.])
+    exit
+fi
+
+XOSD_LDFLAGS=`$xosdconfigpath --libs`
+if test -z "$XOSD_LDFLAGS"; then
+    AC_MSG_RESULT([not found.])
+    exit
+fi
+
+AC_SUBST(XOSD_CFLAGS)
+AC_SUBST(XOSD_LDFLAGS)
+
+# Checks for libraries.
 AC_MSG_CHECKING(if LIRC support is enabled)
 lirc=yes
 AC_ARG_ENABLE([lirc],
@@ -55,26 +78,7 @@ if test "x${lirc}" != "xno" ; then
 fi
 AM_CONDITIONAL(HAVE_LIRC, [test "x$HAVE_LIRC" = xyes])
 
-# Checking for xosd-config.
-AC_PATH_PROG([xosdconfigpath], [xosd-config], [no])
-if test "$xosdconfigpath" = "no"; then
-    AC_MSG_ERROR([xosd-config binary is required])
-fi
-
-XOSD_CFLAGS=`$xosdconfigpath --cflags`
-if test -z "$XOSD_CFLAGS"; then
-    AC_MSG_RESULT([not found.])
-    exit
-fi
-
-XOSD_LDFLAGS=`$xosdconfigpath --libs`
-if test -z "$XOSD_LDFLAGS"; then
-    AC_MSG_RESULT([not found.])
-    exit
-fi
-
-AC_SUBST(XOSD_CFLAGS)
-AC_SUBST(XOSD_LDFLAGS)
-
-
+# Output files.
+AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_FILES([Makefile src/Makefile man/Makefile po/Makefile.in])
 AC_OUTPUT
