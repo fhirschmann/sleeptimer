@@ -6,7 +6,7 @@ button on an infrared remote control (via LIRC) or by a single key on a
 keyboard.
 
 It resembles what was (is?) commonly found in modern __televisions__,
-where it usually called a "__sleep timer__".
+where it usually called a __sleep timer__.
 
 Halttimer dependencies are minimal and can be run on any platform where
 LIRC and xosd is available. This makes halttimer an ideal candidate for
