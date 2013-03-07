@@ -45,8 +45,9 @@ It can then be built by executing:
     
     DESCRIPTION
            Waits  for  LIRC  events or SIGUSR1 and sets a timer that will initiate
-           the shut down sequence when  the  time  is  up.	 The  timer's  timeout
-           decreases with each keypress by a specified amount of time.
+           the shut down sequence (via 'sudo halt' by default) when  the  time  is
+           up.  The  timer's  timeout  decreases with each keypress by a specified
+           amount of time.
     
     OPTIONS
            -f, --font
@@ -83,7 +84,7 @@ It can then be built by executing:
     
     EXAMPLES
            Use a different shutdown command:
-           halttimer -e "sudo halt"
+           halttimer -e "systemctl poweroff"
     
            Use a different font:
            halttimer -f "-*-arial-*-r-normal--100-*-*-*-*-*-*-*"
@@ -92,8 +93,18 @@ It can then be built by executing:
            halttimer -m 120 -d 10
     
     CONFIGURATION
-           Halttimer  can  be  configured  to wait for a LIRC signal, an arbitrary
-           command, or both.
+           Command configuration
+           First, halttimer needs to be able to shut the system down.  This can be
+           done  in  many different ways, but by default, halttimer executes 'sudo
+           halt'. Therefore, the following line must be present in your /etc/sudo‐
+           ers and can be added using visudo(8).
+    
+           YOU ALL=(ALL) NOPASSWD: /sbin/halt
+    
+           where YOU is your username.
+    
+           Second, halttimer can be configured to wait for a LIRC signal, an arbi‐
+           trary command, or both.
     
            LIRC Configuration
            If LIRC is desired, append the following to your ~/.lircrc

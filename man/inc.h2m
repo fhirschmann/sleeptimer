@@ -1,7 +1,25 @@
 [name]
 halttimer - a simple single-button lirc-aware shut down timer
 [configuration]
-Halttimer can be configured to wait for a LIRC signal, an arbitrary command, or both.
+.LP
+.B Command configuration
+.br
+First, halttimer needs to be able to shut the system down.
+This
+can be done in many different ways, but by default, halttimer
+executes 'sudo halt'. Therefore, the following line must be present
+in your /etc/sudoers and can be added using
+.BR visudo (8).
+.LP
+.I YOU 
+ALL=(ALL) NOPASSWD: /sbin/halt
+.LP
+where
+.I YOU 
+is your username.
+.LP
+Second, halttimer can be configured to wait for a LIRC
+signal, an arbitrary command, or both.
 .LP
 .B LIRC Configuration
 .br
@@ -35,7 +53,7 @@ was written by Fabian Hirschmann <fabian@hirschm.net>.
 .LP
 .B Use a different shutdown command:
 .br
-halttimer -e "sudo halt"
+halttimer -e "systemctl poweroff"
 .LP
 .B Use a different font:
 .br

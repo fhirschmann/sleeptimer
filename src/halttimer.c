@@ -153,10 +153,7 @@ int main(int argc, char *argv[]) {
         .horizontal_offset = 10
     };
 
-    opts.execute = "dbus-send --system --print-reply "
-                   "--dest='org.freedesktop.ConsoleKit'"
-                   "/org/freedesktop/ConsoleKit/Manager"
-                   "org.freedesktop.ConsoleKit.Manager.Stop";
+    opts.execute = "sudo halt";
     opts.decrement = 15;
     opts.max = 120;
     opts.threshold = osd_opts.timeout;
@@ -228,9 +225,9 @@ int main(int argc, char *argv[]) {
                 fputs(_("\
 Usage: halttimer [OPTION]...\n\
 Waits for LIRC events or SIGUSR1 and sets a timer that\n\
-will initiate the shut down sequence when the time is up.\n\
-The timer's timeout decreases with each keypress by a specified\n\
-amount of time.\n\
+will initiate the shut down sequence (via 'sudo halt' by default) when\n\
+the time is up. The timer's timeout decreases with each keypress\n\
+by a specified amount of time.\n\
 \n\
 "), stdout);
                 fputs(_("\
