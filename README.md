@@ -93,7 +93,7 @@ It can then be built by executing:
            halttimer -m 120 -d 10
     
     CONFIGURATION
-           Command configuration
+           Command Configuration
            First, halttimer needs to be able to shut the system down.  This can be
            done  in  many different ways, but by default, halttimer executes 'sudo
            halt'. Therefore, the following line must be present in your /etc/sudo‐

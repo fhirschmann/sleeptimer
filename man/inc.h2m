@@ -2,7 +2,7 @@
 halttimer - a simple single-button lirc-aware shut down timer
 [configuration]
 .LP
-.B Command configuration
+.B Command Configuration
 .br
 First, halttimer needs to be able to shut the system down.
 This
