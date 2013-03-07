@@ -120,7 +120,7 @@ It can then be built by executing:
            be obtained using irw(1).
     
            Keyboard Configuration
-           You  can control halttimer by simplify sending the SIGUSR1 signal: kill
+           You  can  control  halttimer by simply sending the SIGUSR1 signal: kill
            -SIGUSR `pidof halttimer`.  This command could be bound	to  a  key  on
            your keyboard.
     

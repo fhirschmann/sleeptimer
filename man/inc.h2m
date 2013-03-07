@@ -41,7 +41,7 @@ using
 .LP
 .B Keyboard Configuration
 .br
-You can control halttimer by simplify sending the SIGUSR1 signal:
+You can control halttimer by simply sending the SIGUSR1 signal:
 .I kill -SIGUSR `pidof halttimer`.
 This command could be bound to a key on your keyboard.
 [see also]
