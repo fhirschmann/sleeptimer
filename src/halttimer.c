@@ -24,6 +24,7 @@
 #include <getopt.h>
 #include <signal.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include <sys/time.h>
 #include <unistd.h>
 #include <xosd.h>
@@ -65,7 +66,7 @@ long timevaldiff(struct timeval *from, struct timeval *to) {
 }
 
 void catch_alarm(int sig) {
-    xosd_display(osd, 0, XOSD_string, _("Shutdown initiated"));
+    xosd_display(osd, 0, XOSD_string, _("shutdown initiated"));
     sleep(2);
     system(opts.execute);
 }
@@ -89,7 +90,7 @@ void catch_usr1(int sig) {
     alarm(new);
 
     if (new == 0) {
-        xosd_display(osd, 0, XOSD_string, _("Off"));
+        xosd_display(osd, 0, XOSD_string, _("off"));
     } else {
         char msg[20];
         sprintf(msg, "%d", new / 60);
@@ -99,44 +100,63 @@ void catch_usr1(int sig) {
     gettimeofday(&tv_last, NULL);
 }
 
-int run() {
-    #ifdef HAVE_LIRC
-        char *code, *x, ret;
-        static struct lirc_config *lirc_config = NULL;
+#ifdef HAVE_LIRC
+int run_lirc() {
+    char *code, *x, ret;
+    static struct lirc_config *lirc_config = NULL;
 
-        if (lirc_init("halttimer", 1) == -1) {
-            fputs(_("Could not initialize LIRC system."), stderr);
-            return EXIT_FAILURE;
+    if (lirc_init("halttimer", 1) == -1) {
+        fputs(_("halttimer: could not initialize LIRC system."), stderr);
+        return EXIT_FAILURE;
+    }
+
+    /* Use the default config file in ~/.lircrc */
+    if (lirc_readconfig(NULL, &lirc_config, NULL) != 0) {
+        fputs("halttimer: try --no-lirc to disable LIRC.\n", stdout);
+        return EXIT_FAILURE;
+    }
+
+    /* Wait for keypresses. */
+    while (lirc_nextcode(&code) == 0) {
+        if (code == NULL)
+            continue;
+
+        while ((ret = lirc_code2char(lirc_config, code, &x)) == 0 && x != NULL) {
+            raise(SIGUSR1);
         }
-
-        /* Use the default config file in ~/.lircrc */
-        if (lirc_readconfig(NULL, &lirc_config, NULL) != 0) {
-            return EXIT_FAILURE;
+        free(code);
+        if (ret == -1) {
+            break;
         }
+    }
 
-        /* Wait for keypresses. */
-        while (lirc_nextcode(&code) == 0) {
-            if (code == NULL)
-                continue;
-
-            while ((ret = lirc_code2char(lirc_config, code, &x)) == 0 && x != NULL) {
-                raise(SIGUSR1);
-            }
-            free(code);
-            if (ret == -1)
-                break;
-        }
-
-        lirc_freeconfig(lirc_config);
-        lirc_deinit();
-    #else
-        while (1) {
-            pause();
-        }
-    #endif
+    lirc_freeconfig(lirc_config);
+    lirc_deinit();
 
     return EXIT_SUCCESS;
 }
+#endif
+
+int run_nolirc() {
+    while (1) {
+        pause();
+    }
+
+    return EXIT_SUCCESS;
+}
+
+int run(bool with_lirc) {
+#ifdef HAVE_LIRC
+    if (with_lirc) {
+        return run_lirc();
+    } else {
+        return run_nolirc();
+    }
+#else
+    return run_nolirc();
+#endif
+}
+
 
 int main(int argc, char *argv[]) {
     setlocale(LC_ALL, "");
@@ -153,6 +173,8 @@ int main(int argc, char *argv[]) {
         .horizontal_offset = 10
     };
 
+    bool with_lirc = true;
+
     opts.execute = "sudo halt";
     opts.decrement = 15;
     opts.max = 120;
@@ -168,6 +190,7 @@ int main(int argc, char *argv[]) {
         {"align", required_argument, 0, 'a'},
         {"y-offset", required_argument, 0, 'y'},
         {"x-offset", required_argument, 0, 'x'},
+        {"no-lirc", no_argument, 0, 'n'},
         {"help", no_argument, 0, 'h'},
         {"version", no_argument, 0, 'v'},
         {NULL, no_argument, NULL, 0}
@@ -177,7 +200,7 @@ int main(int argc, char *argv[]) {
 
     while (1) {
         option_index = 0;
-        c = getopt_long(argc, argv, "f:c:e:t:d:m:a:y:x:hv",
+        c = getopt_long(argc, argv, "f:c:e:t:d:m:a:y:n:x:hv",
                 long_options, &option_index);
 
         if (c == -1)
@@ -218,6 +241,9 @@ int main(int argc, char *argv[]) {
             case 'd':
                 opts.decrement = atoi(optarg);
                 break;
+            case 'n':
+                with_lirc = false;
+                break;
             case 'm':
                 opts.max = atoi(optarg);
                 break;
@@ -239,6 +265,11 @@ Options:\n\
   -x, --x-offset    horizontal offset of the OSD text in pixels\n\
   -a, --align       alignment of the OSD text; one of {l,c,r}\n\
 "), stdout);
+#ifdef HAVE_LIRC
+                fputs(_("\n\
+  -n, --no-lirc     disable lirc\n\
+"), stdout);
+#endif
                 fputs(_("\n\
   -e, --execute     command to execute when the time is up\n\
   -d, --decrement   number of minutes to decrement the counter by\n\
@@ -263,7 +294,7 @@ Options:\n\
 
     signal(SIGUSR1, catch_usr1);
     signal(SIGALRM, catch_alarm);
-    int ret = run();
+    int ret = run(with_lirc);
 
     xosd_destroy(osd);
     return ret;

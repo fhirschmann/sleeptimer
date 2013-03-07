@@ -68,6 +68,9 @@ It can then be built by executing:
            -a, --align
     	      alignment of the OSD text; one of {l,c,r}
     
+           -n, --no-lirc
+    	      disables lirc
+    
            -e, --execute
     	      command to execute when the time is up
     
