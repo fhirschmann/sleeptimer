@@ -92,7 +92,7 @@ void catch_usr1(int sig) {
         xosd_display(osd, 0, XOSD_string, _("Off"));
     } else {
         char msg[20];
-        sprintf(msg, "%d", new / 60, 20);
+        sprintf(msg, "%d", new / 60);
         xosd_display(osd, 0, XOSD_string, msg);
     }
 

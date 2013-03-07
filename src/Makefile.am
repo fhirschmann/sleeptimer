@@ -20,6 +20,7 @@ AM_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"
 bin_PROGRAMS = halttimer
 
 halttimer_SOURCES = halttimer.c gettext.h
+halttimer_CFLAGS = -Wall -Werror
 halttimer_LDFLAGS = @XOSD_LDFLAGS@
 if HAVE_LIRC
 	halttimer_LDFLAGS += -llirc_client
