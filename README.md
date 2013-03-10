@@ -129,8 +129,8 @@ Halttimer relases that include prebuilt autotools scripts (e.g. ./configure) can
     
            Keyboard Configuration
            You  can  control  halttimer by simply sending the SIGUSR1 signal: kill
-           -SIGUSR `pidof halttimer`.  This command could be bound	to  a  key  on
-           your keyboard.
+           -USR1 `pidof halttimer`.  This command could be bound to a key on  your
+           keyboard.
     
     AUTHORS
            halttimer was written by Fabian Hirschmann <fabian@hirschm.net>.

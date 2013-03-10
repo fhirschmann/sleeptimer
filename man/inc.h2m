@@ -42,7 +42,7 @@ using
 .B Keyboard Configuration
 .br
 You can control halttimer by simply sending the SIGUSR1 signal:
-.I kill -SIGUSR `pidof halttimer`.
+.I kill -USR1 `pidof halttimer`.
 This command could be bound to a key on your keyboard.
 [see also]
 .BR irw (1).
