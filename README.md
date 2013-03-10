@@ -140,4 +140,4 @@ Halttimer relases that include prebuilt autotools scripts (e.g. ./configure) can
     
     
     
-    halttimer 0.1			  March 2013			  HALTTIMER(1)
+    halttimer 0.2			  March 2013			  HALTTIMER(1)
