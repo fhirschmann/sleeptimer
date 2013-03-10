@@ -16,7 +16,7 @@
 # along with Halttimer.  If not, see <http://www.gnu.org/licenses/>.
 
 # Prelude.
-AC_INIT(halttimer, 0.1, [fabian@hirschm.net], [halttimer],
+AC_INIT(halttimer, 0.2, [fabian@hirschm.net], [halttimer],
         http://github.com/fhirschmann/halttimer.git)
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 AM_GNU_GETTEXT_VERSION([0.18])
