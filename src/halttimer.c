@@ -68,10 +68,11 @@ long timevaldiff(struct timeval *from, struct timeval *to) {
 
 void catch_alarm(int sig) {
     char msg[20];
+    int i;
 
     gettimeofday(&tv_current, NULL);
 
-    for (int i = opts.grace; i >= 0; i--) {
+    for (i = opts.grace; i >= 0; i--) {
         if (timevaldiff(&tv_last, &tv_current) < opts.grace - i) {
             xosd_display(osd, 0, XOSD_string, _("aborted"));
             return;
