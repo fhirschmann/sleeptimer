@@ -27,7 +27,7 @@ If LIRC-support is required:
 
 It can then be built by executing:
 
-    autoreconf --install
+    ./autogen.sh
     ./configure
     make
     make install
