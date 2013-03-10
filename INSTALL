@@ -1,0 +1,9 @@
+Install Instructions
+====================
+
+Halttimer can be installed by executing the following sequence of commands:
+
+    ./autogen.sh
+    ./configure
+    make
+    make install
