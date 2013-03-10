@@ -40,6 +40,7 @@ typedef struct options {
     char *execute;
     int decrement;
     int threshold;
+    int grace;
     int max;
 } options;
 options opts;
@@ -66,8 +67,20 @@ long timevaldiff(struct timeval *from, struct timeval *to) {
 }
 
 void catch_alarm(int sig) {
-    xosd_display(osd, 0, XOSD_string, _("shutdown initiated"));
-    sleep(2);
+    char msg[20];
+
+    gettimeofday(&tv_current, NULL);
+
+    for (int i = opts.grace; i >= 0; i--) {
+        if (timevaldiff(&tv_last, &tv_current) < opts.grace - i) {
+            xosd_display(osd, 0, XOSD_string, _("aborted"));
+            return;
+        } else {
+            sprintf(msg, _("halt in %ds"), i);
+            xosd_display(osd, 0, XOSD_string, msg);
+            sleep(1);
+        }
+    }
     system(opts.execute);
 }
 
@@ -177,6 +190,7 @@ int main(int argc, char *argv[]) {
     opts.execute = "sudo halt";
     opts.decrement = 15;
     opts.max = 120;
+    opts.grace = 10;
     opts.threshold = osd_opts.timeout;
 
     static struct option long_options[] = {
@@ -199,7 +213,7 @@ int main(int argc, char *argv[]) {
 
     while (1) {
         option_index = 0;
-        c = getopt_long(argc, argv, "f:c:e:t:d:m:a:y:n:x:hv",
+        c = getopt_long(argc, argv, "f:c:e:t:d:m:a:y:n:g:x:hv",
                 long_options, &option_index);
 
         if (c == -1)
@@ -240,6 +254,8 @@ int main(int argc, char *argv[]) {
             case 'd':
                 opts.decrement = atoi(optarg);
                 break;
+            case 'g':
+                opts.grace = atoi(optarg);
             case 'n':
                 with_lirc = false;
                 break;
@@ -272,7 +288,8 @@ Options:\n\
                 fputs(_("\n\
   -e, --execute     command to execute when the time is up\n\
   -d, --decrement   number of minutes to decrement the counter by\n\
-  -m, --max         maximum time of the counter in minutes\n"), stdout);
+  -m, --max         maximum time of the counter in minutes\n\
+  -g, --grace       time granted to cancel a scheduled shutdown in seconds\n"), stdout);
                 return EXIT_SUCCESS;
             case 'v':
                 printf("halttimer %s\n", VERSION);

@@ -69,7 +69,7 @@ It can then be built by executing:
     	      alignment of the OSD text; one of {l,c,r}
     
            -n, --no-lirc
-    	      disables lirc
+    	      disable lirc
     
            -e, --execute
     	      command to execute when the time is up
@@ -79,6 +79,9 @@ It can then be built by executing:
     
            -m, --max
     	      maximum time of the counter in minutes
+    
+           -g, --grace
+    	      time granted to cancel a scheduled shutdown in seconds
     
     FILES
            ~/.lircrc
