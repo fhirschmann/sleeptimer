@@ -162,12 +162,9 @@ int run(bool with_lirc) {
 #ifdef HAVE_LIRC
     if (with_lirc) {
         return run_lirc();
-    } else {
-        return run_nolirc();
     }
-#else
-    return run_nolirc();
 #endif
+    return run_nolirc();
 }
 
 int main(int argc, char *argv[]) {
