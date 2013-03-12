@@ -82,7 +82,10 @@ void catch_alarm(int sig) {
             sleep(1);
         }
     }
-    system(opts.execute);
+
+    if (system(opts.execute) == -1) {
+        fputs(_("halttimer: command execution failed."), stderr);
+    }
 }
 
 void catch_usr1(int sig) {
