@@ -23,11 +23,37 @@ configure
 configure.in
 config.h
 config.h.in
+config.guess
+config.rpath
+config.sub
+config.status
+
+depcomp
+install-sh
+missing
+compile
 
 src/localedir.h
 src/halttimer
 src/Makefile
 src/Makefile.in
 
+m4/
+aclocal.m4
+ABOUT-NLS
+stamp-h1
+
+# Other generated stuff
+man/halttimer.1
+
 # Cache/Temp
 autom4te.cache/
+po/stamp-po
+po/halttimer.pot
+po/Makevars.template
+po/POTFILES
+po/remove-potcdate.sed
+src/.deps/
+
+# make dist(check)
+halttimer-*.tar.gz
