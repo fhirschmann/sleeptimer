@@ -32,8 +32,6 @@ It can then be built by executing:
     make
     make install
 
-Halttimer relases that include prebuilt autotools scripts (e.g. ./configure) can be obtained [from this site](http://halttimer.0x0b.de/releases/).
-
 ## Packaging
 
 The git repository contains all the files needed to create a package for Debian
