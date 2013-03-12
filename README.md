@@ -144,8 +144,8 @@ and follows [Russ Allbery's instructions](http://www.eyrie.org/~eagle/notes/debi
            halttimer was written by Fabian Hirschmann <fabian@hirschm.net>.
     
     SEE ALSO
-           irw(1).
+           irw(1),visudo(8).
     
     
     
-    halttimer 0.2			  March 2013			  HALTTIMER(1)
+    halttimer 0.3			  March 2013			  HALTTIMER(1)
