@@ -34,6 +34,14 @@ It can then be built by executing:
 
 Halttimer relases that include prebuilt autotools scripts (e.g. ./configure) can be obtained [from this site](http://halttimer.0x0b.de/releases/).
 
+## Packaging
+
+The git repository contains all the files needed to create a package for Debian
+and follows [Russ Allbery's instructions](http://www.eyrie.org/~eagle/notes/debian/git.html#combine). In particular, `.git/gbp.conf` needs to contain:
+
+    [DEFAULT]
+    debian-branch=debian
+
 ## Manual
     HALTTIMER(1)			 User Commands			  HALTTIMER(1)
     
