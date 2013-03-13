@@ -33,7 +33,7 @@ It can then be built by executing:
     make install
 
 Release tarballs that don't require autotools to be installed can be
-[obtained from this site](http://halttimer.0x0b.de/releases).
+[obtained from this site](http://dl.0x0b.de/halttimer).
 
 ## Manual
     HALTTIMER(1)			 User Commands			  HALTTIMER(1)
