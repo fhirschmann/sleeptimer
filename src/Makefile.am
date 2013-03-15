@@ -21,9 +21,9 @@ bin_PROGRAMS = halttimer
 
 halttimer_SOURCES = halttimer.c gettext.h
 halttimer_CFLAGS = -Wall -Werror
-halttimer_LDFLAGS = @XOSD_LDFLAGS@
+halttimer_LDADD = @XOSD_LDFLAGS@
 if HAVE_LIRC
-	halttimer_LDFLAGS += -llirc_client
+	halttimer_LDADD += -llirc_client
 endif
 
 LDADD = $(LIBINTL)
