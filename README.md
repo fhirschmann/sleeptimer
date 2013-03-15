@@ -141,4 +141,4 @@ Release tarballs that don't require autotools to be installed can be
     
     
     
-    halttimer 0.3			  March 2013			  HALTTIMER(1)
+    halttimer 0.3.1 		  March 2013			  HALTTIMER(1)
