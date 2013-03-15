@@ -1,9 +1,15 @@
 Install Instructions
 ====================
 
-Halttimer can be installed by executing the following sequence of commands:
+If you downloaded halttimer from its Github Page, you will first need
+to create its build scripts:
 
     ./autogen.sh
+
+If not, you can skip this step.
+
+Halttimer can then be installed by executing the following sequence of commands:
+
     ./configure
     make
     make install
