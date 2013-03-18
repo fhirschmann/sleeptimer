@@ -257,7 +257,7 @@ int main(int argc, char *argv[]) {
                 } else if (optarg[0] == 'c') {
                     osd_opts.align = XOSD_center;
                 } else {
-                    fprintf(stderr, "Invalid argument to --align [l|c|r].\n");
+                    fprintf(stderr, _("Invalid argument to --align [l|c|r].\n"));
                     return EXIT_FAILURE;
                 }
                 break;
