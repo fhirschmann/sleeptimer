@@ -74,9 +74,11 @@ void catch_alarm(int sig) {
 
     for (i = opts.grace; i >= 0; i--) {
         if (timevaldiff(&tv_last, &tv_current) < opts.grace - i) {
+            /// The shutdown sequence was aborted.
             xosd_display(osd, 0, XOSD_string, _("aborted"));
             return;
         } else {
+            /// The system will shut down in %d seconds.
             sprintf(msg, _("halt in %ds"), i);
             xosd_display(osd, 0, XOSD_string, msg);
             sleep(1);
@@ -89,24 +91,32 @@ void catch_alarm(int sig) {
 }
 
 void catch_usr1(int sig) {
+    // The current value of the alarm in seconds or 0.
     unsigned int old = alarm(0);
+
+    // The new value of the alarm in seconds.
     unsigned int new;
 
     gettimeofday(&tv_current, NULL);
 
     if (timevaldiff(&tv_last, &tv_current) < opts.threshold * 1000) {
+        // The OSD is still being displayed -- set/change timer.
         if (old == 0) {
+            // Timer was not active -- set to opts.max.
             new = opts.max * 60;
         } else {
+            // Round down to the next multiple of opts.decrement.
             new = ((old - 1) / (opts.decrement * 60)) * (opts.decrement * 60);
         }
     } else {
+        // Take no action.
         new = old;
     }
 
     alarm(new);
 
     if (new == 0) {
+        /// The timer is currently disabled.
         xosd_display(osd, 0, XOSD_string, _("off"));
     } else {
         char msg[20];
@@ -127,13 +137,14 @@ int run_lirc() {
         return EXIT_FAILURE;
     }
 
-    /* Use the default config file in ~/.lircrc */
+    // Use the default config file in ~/.lircrc.
     if (lirc_readconfig(NULL, &lirc_config, NULL) != 0) {
+        /// Failed to load the LIRC configuration file.
         fputs("halttimer: try --no-lirc to disable LIRC.\n", stdout);
         return EXIT_FAILURE;
     }
 
-    /* Wait for keypresses. */
+    // Wait for keypresses.
     while (lirc_nextcode(&code) == 0) {
         if (code == NULL)
             continue;
@@ -156,6 +167,7 @@ int run_lirc() {
 
 int run_nolirc() {
     while (1) {
+        // Pause until alarm() sends signal.
         pause();
     }
 
