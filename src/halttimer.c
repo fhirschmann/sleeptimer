@@ -226,7 +226,7 @@ int main(int argc, char *argv[]) {
 
     while (1) {
         option_index = 0;
-        c = getopt_long(argc, argv, "f:c:e:t:d:m:a:y:n:g:x:hv",
+        c = getopt_long(argc, argv, "f:c:e:t:d:m:a:y:g:x:hvn",
                 long_options, &option_index);
 
         if (c == -1)
