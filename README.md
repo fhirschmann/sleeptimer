@@ -9,7 +9,7 @@ It resembles what was (is?) commonly found in modern __televisions__,
 where it usually called a __sleep timer__.
 
 Halttimer's dependencies are minimal and it can be run on any platform where
-LIRC and xosd are available. This makes halttimer an ideal candidate for
+xosd and LIRC (optionally) are available. This makes halttimer an ideal candidate for
 home theater PCs (HTPCs), because it is platform-agnostic, which allows
 you to use it with any media center solution.
 
