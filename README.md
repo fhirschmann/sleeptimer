@@ -1,5 +1,7 @@
 # halttimer
 
+[![Build Status](https://travis-ci.org/fhirschmann/halttimer.png?branch=master)](https://travis-ci.org/fhirschmann/halttimer)
+
 Halttimer is a LIRC-aware timer with an on-screen-display (OSD) that initiates
 the shut down sequence after a preset amount of time. It can be controlled by a single
 button on an infrared remote control (via LIRC) or by a single key on a
