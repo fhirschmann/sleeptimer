@@ -136,7 +136,7 @@ Release tarballs that don't require autotools to be installed can be
            keyboard.
     
     AUTHORS
-           halttimer was written by Fabian Hirschmann <fabian@hirschm.net>.
+           halttimer was written by Fabian Hirschmann <fabian@hirschmann.email>.
     
     SEE ALSO
            irw(1),visudo(8).

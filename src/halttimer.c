@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013 Fabian Hirschmann <fabian@hirschm.net>
+ * Copyright (c) 2013 Fabian Hirschmann <fabian@hirschmann.email>
  *
  * This file is part of halttimer.
  *

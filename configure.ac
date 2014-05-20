@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Fabian Hirschmann <fabian@hirschm.net>
+# Copyright (c) 2013 Fabian Hirschmann <fabian@hirschmann.email>
 #
 # This file is part of halttimer.
 #
@@ -16,7 +16,7 @@
 # along with Halttimer.  If not, see <http://www.gnu.org/licenses/>.
 
 # Prelude.
-AC_INIT(halttimer, 0.3.1, [fabian@hirschm.net], [halttimer],
+AC_INIT(halttimer, 0.3.1, [fabian@hirschmann.email], [halttimer],
         http://github.com/fhirschmann/halttimer.git)
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 AM_GNU_GETTEXT_VERSION([0.18])

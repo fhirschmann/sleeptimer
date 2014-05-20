@@ -48,7 +48,7 @@ This command could be bound to a key on your keyboard.
 .BR irw (1), visudo(8).
 [authors]
 .B halttimer
-was written by Fabian Hirschmann <fabian@hirschm.net>.
+was written by Fabian Hirschmann <fabian@hirschmann.email>.
 [examples]
 .LP
 .B Use a different shutdown command:
