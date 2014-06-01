@@ -88,21 +88,6 @@ Release tarballs that don't require autotools to be installed can be
            -g, --grace
     	      time granted to cancel a scheduled shutdown in seconds
     
-    FILES
-           ~/.lircrc
-    	   File that can be used to instruct halttimer to wait for a specific
-    	   button on a remote control.
-    
-    EXAMPLES
-           Use a different shutdown command:
-           halttimer -e "systemctl poweroff"
-    
-           Use a different font:
-           halttimer -f "-*-arial-*-r-normal--100-*-*-*-*-*-*-*"
-    
-           Set the maximum timeout to 120min with decrements of 10min:
-           halttimer -m 120 -d 10
-    
     CONFIGURATION
            Command Configuration
            First, halttimer needs to be able to shut the system down.  This can be
@@ -138,9 +123,24 @@ Release tarballs that don't require autotools to be installed can be
     AUTHORS
            halttimer was written by Fabian Hirschmann <fabian@hirschmann.email>.
     
+    FILES
+           ~/.lircrc
+    	   File that can be used to instruct halttimer to wait for a specific
+    	   button on a remote control.
+    
+    EXAMPLES
+           Use a different shutdown command:
+           halttimer -e "systemctl poweroff"
+    
+           Use a different font:
+           halttimer -f "-*-arial-*-r-normal--100-*-*-*-*-*-*-*"
+    
+           Set the maximum timeout to 120min with decrements of 10min:
+           halttimer -m 120 -d 10
+    
     SEE ALSO
            irw(1),visudo(8).
     
     
     
-    halttimer 0.3.1 		  March 2013			  HALTTIMER(1)
+    halttimer 0.3.2 		   June 2014			  HALTTIMER(1)
