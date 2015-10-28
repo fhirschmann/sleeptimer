@@ -17,4 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Halttimer.  If not, see <http://www.gnu.org/licenses/>.
 
+# Work around gettext < 0.18.2 requiring a gettext version
+GV=$(gettext --version | head -n1 | awk '{ print $4 }')
+sed -r "s/(AM_GNU_GETTEXT_VERSION\(\[).*(\]\))/\1$GV\2/" -i configure.ac
+
 exec autoreconf -i
