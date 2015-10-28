@@ -23,4 +23,4 @@ README.md: man/halttimer.1
 
 ACLOCAL_AMFLAGS = -I m4
 
-EXTRA_DIST = config.rpath m4/ChangeLog README.md config.rpath
+EXTRA_DIST = config.rpath README.md
