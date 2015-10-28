@@ -5,4 +5,6 @@ compiler:
 before_install:
   - sudo apt-get install -qq autopoint libxosd-dev liblircclient-dev gettext
   - gettext --version
-script: gettextize -f && ./autogen.sh && ./configure && make
+script:
+  - GV=$(gettext --version | head -n1 | awk '{ print $4 }') sed -r "s/(AM_GNU_GETTEXT_VERSION\(\[).*(\]\))/\1$GV\2/" -i configure.ac
+  - ./autogen.sh && ./configure && make
