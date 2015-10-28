@@ -203,7 +203,7 @@ int main(int argc, char *argv[]) {
     opts.execute = "systemctl poweroff";
     opts.decrement = 15;
     opts.max = 120;
-    opts.grace = 10;
+    opts.grace = 20;
     opts.threshold = osd_opts.timeout;
 
     static struct option long_options[] = {
