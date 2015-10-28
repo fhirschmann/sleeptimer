@@ -49,10 +49,10 @@ Release tarballs that don't require autotools to be installed can be
            halttimer [OPTION]...
     
     DESCRIPTION
-           Waits  for  LIRC  events or SIGUSR1 and sets a timer that will initiate
-           the shut down sequence (via 'sudo halt' by default) when  the  time  is
-           up.  The  timer's  timeout  decreases with each keypress by a specified
-           amount of time.
+           Waits  for  LIRC	 events or SIGUSR1 and sets a timer that will initiate
+           the shut down sequence (via 'systemctl poweroff' by default)  when  the
+           time is up. The timer's timeout decreases with each keypress by a spec‐
+           ified amount of time.
     
     OPTIONS
            -f, --font
@@ -90,10 +90,14 @@ Release tarballs that don't require autotools to be installed can be
     
     CONFIGURATION
            Command Configuration
-           First, halttimer needs to be able to shut the system down.  This can be
-           done  in  many different ways, but by default, halttimer executes 'sudo
-           halt'. Therefore, the following line must be present in your /etc/sudo‐
-           ers and can be added using visudo(8).
+           First, halttimer needs to be able to shut the system down.
+    
+           On modern systems using systemd and polkit, this is possible by default
+           using 'systemctl poweroff' and there is nothing more to configure.
+    
+           On  older  systems,  this  can  be  done in many different ways, but by
+           default, halttimer executes 'sudo halt'. Therefore, the following  line
+           must be present in your /etc/sudoers and can be added using visudo(8).
     
            YOU ALL=(ALL) NOPASSWD: /sbin/halt
     
@@ -116,8 +120,8 @@ Release tarballs that don't require autotools to be installed can be
            be obtained using irw(1).
     
            Keyboard Configuration
-           You  can  control  halttimer by simply sending the SIGUSR1 signal: kill
-           -USR1 `pidof halttimer`.  This command could be bound to a key on  your
+           You  can	 control  halttimer by simply sending the SIGUSR1 signal: kill
+           -USR1 `pidof halttimer`.	 This command could be bound to a key on  your
            keyboard.
     
     AUTHORS
@@ -133,7 +137,7 @@ Release tarballs that don't require autotools to be installed can be
            halttimer -e "systemctl poweroff"
     
            Use a different font:
-           halttimer -f "-*-arial-*-r-normal--100-*-*-*-*-*-*-*"
+           halttimer -f "-misc-liberation sans-medium-r-normal--*-360-*-*-p-*-*-*"
     
            Set the maximum timeout to 120min with decrements of 10min:
            halttimer -m 120 -d 10
@@ -143,4 +147,4 @@ Release tarballs that don't require autotools to be installed can be
     
     
     
-    halttimer 0.3.2 		   June 2014			  HALTTIMER(1)
+    halttimer 0.3.2			 October 2015			  HALTTIMER(1)
