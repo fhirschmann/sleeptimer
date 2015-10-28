@@ -190,7 +190,7 @@ int main(int argc, char *argv[]) {
 
     /* Default values. */
     xosd_options osd_opts = {
-        .font = "-*-helvetica-*-r-normal--100-*-*-*-*-*-*-*",
+        .font = "-*-*-*-r-*-*--820-*-*-p-*-*-*",
         .color = "LawnGreen",
         .timeout = 2,
         .align = XOSD_right,
@@ -200,7 +200,7 @@ int main(int argc, char *argv[]) {
 
     bool with_lirc = true;
 
-    opts.execute = "sudo halt";
+    opts.execute = "systemctl poweroff";
     opts.decrement = 15;
     opts.max = 120;
     opts.grace = 10;
@@ -279,7 +279,7 @@ int main(int argc, char *argv[]) {
                 fputs(_("\
 Usage: halttimer [OPTION]...\n\
 Waits for LIRC events or SIGUSR1 and sets a timer that\n\
-will initiate the shut down sequence (via 'sudo halt' by default) when\n\
+will initiate the shut down sequence (via 'systemctl poweroff' by default) when\n\
 the time is up. The timer's timeout decreases with each keypress\n\
 by a specified amount of time.\n\
 \n\
