@@ -19,7 +19,7 @@
 AC_INIT(halttimer, 0.3.2, [fabian@hirschmann.email], [halttimer],
         http://github.com/fhirschmann/halttimer.git)
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
-AM_GNU_GETTEXT_VERSION([0.18.1])
+AM_GNU_GETTEXT_VERSION([0.18.2])
 AM_GNU_GETTEXT([external])
 
 # Checks for programs.
