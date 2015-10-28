@@ -5,4 +5,4 @@ compiler:
 before_install:
   - sudo apt-get install -qq autopoint libxosd-dev liblircclient-dev gettext
   - gettext --version
-script: ./autogen.sh && ./configure && make
+script: gettextize -f && ./autogen.sh && ./configure && make
