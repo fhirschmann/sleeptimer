@@ -1,25 +1,25 @@
 # Copyright (c) 2013 Fabian Hirschmann <fabian@hirschmann.email>
 #
-# This file is part of halttimer.
+# This file is part of sleeptimer.
 #
-# Halttimer is free software: you can redistribute it and/or modify
+# Sleeptimer is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Halttimer is distributed in the hope that it will be useful,
+# Sleeptimer is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Halttimer.  If not, see <http://www.gnu.org/licenses/>.
+# along with Sleeptimer.  If not, see <http://www.gnu.org/licenses/>.
 
 # Prelude.
-AC_INIT(halttimer, 0.3.2, [fabian@hirschmann.email], [halttimer],
-        http://github.com/fhirschmann/halttimer.git)
+AC_INIT(sleeptimer, 0.3.2, [fabian@hirschmann.email], [sleeptimer],
+        http://github.com/fhirschmann/sleeptimer.git)
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
-AM_GNU_GETTEXT_VERSION([0.18.2])
+AM_GNU_GETTEXT_VERSION([0.19.6])
 AM_GNU_GETTEXT([external])
 
 # Checks for programs.

@@ -1,17 +1,17 @@
 [name]
-halttimer - a simple single-button lirc-aware shut down timer
+sleeptimer - a simple single-button lirc-aware shut down timer
 [configuration]
 .LP
 .B Command Configuration
 .br
-First, halttimer needs to be able to shut the system down.
+First, sleeptimer needs to be able to shut the system down.
 .LP
 On modern systems using systemd and polkit, this is possible
 by default using 'systemctl poweroff' and there is nothing
 more to configure.
 .LP
 On older systems, this
-can be done in many different ways, but by default, halttimer
+can be done in many different ways, but by default, sleeptimer
 executes 'sudo halt'. Therefore, the following line must be present
 in your /etc/sudoers and can be added using
 .BR visudo (8).
@@ -23,7 +23,7 @@ where
 .I YOU 
 is your username.
 .LP
-Second, halttimer can be configured to wait for a LIRC
+Second, sleeptimer can be configured to wait for a LIRC
 signal, an arbitrary command, or both.
 .LP
 .B LIRC Configuration
@@ -31,7 +31,7 @@ signal, an arbitrary command, or both.
 If LIRC is desired, append the following to your ~/.lircrc
 
     begin
-        prog = halttimer
+        prog = sleeptimer
         button =
 .I YOUR_BUTTON
         config = sleep
@@ -46,28 +46,28 @@ using
 .LP
 .B Keyboard Configuration
 .br
-You can control halttimer by simply sending the SIGUSR1 signal:
-.I kill -USR1 `pidof halttimer`.
+You can control sleeptimer by simply sending the SIGUSR1 signal:
+.I kill -USR1 `pidof sleeptimer`.
 This command could be bound to a key on your keyboard.
 [see also]
 .BR irw (1), visudo(8).
 [authors]
-.B halttimer
+.B sleeptimer
 was written by Fabian Hirschmann <fabian@hirschmann.email>.
 [examples]
 .LP
 .B Use a different shutdown command:
 .br
-halttimer -e "systemctl poweroff"
+sleeptimer -e "systemctl poweroff"
 .LP
 .B Use a different font:
 .br
-halttimer -f "-misc-liberation sans-medium-r-normal--*-360-*-*-p-*-*-*"
+sleeptimer -f "-misc-liberation sans-medium-r-normal--*-360-*-*-p-*-*-*"
 .LP
 .B Set the maximum timeout to 120min with decrements of 10min:
 .br
-halttimer -m 120 -d 10
+sleeptimer -m 120 -d 10
 [files]
 ~/.lircrc
-    File that can be used to instruct halttimer to wait for a specific
+    File that can be used to instruct sleeptimer to wait for a specific
     button on a remote control.

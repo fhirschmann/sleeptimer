@@ -1,8 +1,8 @@
-# halttimer
+# sleeptimer
 
-[![Build Status](https://travis-ci.org/fhirschmann/halttimer.png?branch=master)](https://travis-ci.org/fhirschmann/halttimer)
+[![Build Status](https://travis-ci.org/fhirschmann/sleeptimer.png?branch=master)](https://travis-ci.org/fhirschmann/sleeptimer)
 
-Halttimer is a LIRC-aware timer with an on-screen-display (OSD) that initiates
+Sleeptimer is a LIRC-aware timer with an on-screen-display (OSD) that initiates
 the shut down sequence after a preset amount of time. It can be controlled by a single
 button on an infrared remote control (via LIRC) or by a single key on a
 keyboard.
@@ -10,14 +10,14 @@ keyboard.
 It resembles what was (is?) commonly found in modern __televisions__,
 where it usually called a __sleep timer__.
 
-Halttimer's dependencies are minimal and it can be run on any platform where
+Sleeptimer's dependencies are minimal and it can be run on any platform where
 xosd and LIRC (optionally) are available. 
 
-![halttimer](http://static.0x0b.de/misc/halttimer.png)
+![sleeptimer](http://static.0x0b.de/misc/sleeptimer.png)
 
 ## Installation
 
-Halttimer is written in C and needs the following packages on Debian:
+Sleeptimer is written in C and needs the following packages on Debian:
 
     apt-get install libxosd-dev
 
@@ -33,31 +33,31 @@ It can then be built by executing:
     make install
 
 Release tarballs that don't require autotools to be installed can be
-[obtained from this site](http://dl.0x0b.de/halttimer).
+[obtained from this site](http://dl.0x0b.de/sleeptimer).
 
 ## Usage
 
 In the simplest case (i.e. no LIRC, systemd poweroff), you can just
-start halttimer by executing
+start sleeptimer by executing
 
-	halttimer
+	sleeptimer
 
 and bind the
 
-	halttimer-action
+	sleeptimer-action
 
 command to a key of your choice.
 
 ## Manual
-    HALTTIMER(1)			 User Commands			  HALTTIMER(1)
+    SLEEPTIMER(1)			 User Commands			  SLEEPTIMER(1)
     
     
     
     NAME
-           halttimer - a simple single-button lirc-aware shut down timer
+           sleeptimer - a simple single-button lirc-aware shut down timer
     
     SYNOPSIS
-           halttimer [OPTION]...
+           sleeptimer [OPTION]...
     
     DESCRIPTION
            Waits  for  LIRC	 events or SIGUSR1 and sets a timer that will initiate
@@ -101,27 +101,27 @@ command to a key of your choice.
     
     CONFIGURATION
            Command Configuration
-           First, halttimer needs to be able to shut the system down.
+           First, sleeptimer needs to be able to shut the system down.
     
            On modern systems using systemd and polkit, this is possible by default
            using 'systemctl poweroff' and there is nothing more to configure.
     
            On  older  systems,  this  can  be  done in many different ways, but by
-           default, halttimer executes 'sudo halt'. Therefore, the following  line
+           default, sleeptimer executes 'sudo halt'. Therefore, the following  line
            must be present in your /etc/sudoers and can be added using visudo(8).
     
            YOU ALL=(ALL) NOPASSWD: /sbin/halt
     
            where YOU is your username.
     
-           Second, halttimer can be configured to wait for a LIRC signal, an arbi‐
+           Second, sleeptimer can be configured to wait for a LIRC signal, an arbi‐
            trary command, or both.
     
            LIRC Configuration
            If LIRC is desired, append the following to your ~/.lircrc
     
     	   begin
-    	       prog = halttimer
+    	       prog = sleeptimer
     	       button = YOUR_BUTTON
     	       config = sleep
     	       repeat = 1
@@ -131,31 +131,31 @@ command to a key of your choice.
            be obtained using irw(1).
     
            Keyboard Configuration
-           You  can	 control  halttimer by simply sending the SIGUSR1 signal: kill
-           -USR1 `pidof halttimer`.	 This command could be bound to a key on  your
+           You  can	 control  sleeptimer by simply sending the SIGUSR1 signal: kill
+           -USR1 `pidof sleeptimer`.	 This command could be bound to a key on  your
            keyboard.
     
     AUTHORS
-           halttimer was written by Fabian Hirschmann <fabian@hirschmann.email>.
+           sleeptimer was written by Fabian Hirschmann <fabian@hirschmann.email>.
     
     FILES
            ~/.lircrc
-    	   File that can be used to instruct halttimer to wait for a specific
+    	   File that can be used to instruct sleeptimer to wait for a specific
     	   button on a remote control.
     
     EXAMPLES
            Use a different shutdown command:
-           halttimer -e "systemctl poweroff"
+           sleeptimer -e "systemctl poweroff"
     
            Use a different font:
-           halttimer -f "-misc-liberation sans-medium-r-normal--*-360-*-*-p-*-*-*"
+           sleeptimer -f "-misc-liberation sans-medium-r-normal--*-360-*-*-p-*-*-*"
     
            Set the maximum timeout to 120min with decrements of 10min:
-           halttimer -m 120 -d 10
+           sleeptimer -m 120 -d 10
     
     SEE ALSO
            irw(1),visudo(8).
     
     
     
-    halttimer 0.3.2			 October 2015			  HALTTIMER(1)
+    sleeptimer 0.3.2			 October 2015			  SLEEPTIMER(1)

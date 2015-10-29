@@ -1,20 +1,20 @@
 /*
  * Copyright (c) 2013 Fabian Hirschmann <fabian@hirschmann.email>
  *
- * This file is part of halttimer.
+ * This file is part of sleeptimer.
  *
- * Halttimer is free software: you can redistribute it and/or modify
+ * Sleeptimer is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Halttimer is distributed in the hope that it will be useful,
+ * Sleeptimer is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Halttimer.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Sleeptimer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <config.h>
@@ -79,14 +79,14 @@ void catch_alarm(int sig) {
             return;
         } else {
             /// The system will shut down in %d seconds.
-            sprintf(msg, _("halt in %ds"), i);
+            sprintf(msg, _("timeout in %ds"), i);
             xosd_display(osd, 0, XOSD_string, msg);
             sleep(1);
         }
     }
 
     if (system(opts.execute) == -1) {
-        fputs(_("halttimer: command execution failed."), stderr);
+        fputs(_("sleeptimer: command execution failed."), stderr);
     }
 }
 
@@ -132,15 +132,15 @@ int run_lirc() {
     char *code, *x, ret;
     static struct lirc_config *lirc_config = NULL;
 
-    if (lirc_init("halttimer", 1) == -1) {
-        fputs(_("halttimer: could not initialize LIRC system."), stderr);
+    if (lirc_init("sleeptimer", 1) == -1) {
+        fputs(_("sleeptimer: could not initialize LIRC system."), stderr);
         return EXIT_FAILURE;
     }
 
     // Use the default config file in ~/.lircrc.
     if (lirc_readconfig(NULL, &lirc_config, NULL) != 0) {
         /// Failed to load the LIRC configuration file.
-        fputs("halttimer: try --no-lirc to disable LIRC.\n", stdout);
+        fputs("sleeptimer: try --no-lirc to disable LIRC.\n", stdout);
         return EXIT_FAILURE;
     }
 
@@ -277,7 +277,7 @@ int main(int argc, char *argv[]) {
                 break;
             case 'h':
                 fputs(_("\
-Usage: halttimer [OPTION]...\n\
+Usage: sleeptimer [OPTION]...\n\
 Waits for LIRC events or SIGUSR1 and sets a timer that\n\
 will initiate the shut down sequence (via 'systemctl poweroff' by default) when\n\
 the time is up. The timer's timeout decreases with each keypress\n\
@@ -305,7 +305,7 @@ Options:\n\
   -g, --grace       time granted to cancel a scheduled shutdown in seconds\n"), stdout);
                 return EXIT_SUCCESS;
             case 'v':
-                printf("halttimer %s\n", VERSION);
+                printf("sleeptimer %s\n", VERSION);
                 return EXIT_SUCCESS;
             default:
                 return EXIT_FAILURE;

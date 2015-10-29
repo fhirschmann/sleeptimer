@@ -1,2 +1,2 @@
 # List of source files which contain translatable strings.
-src/halttimer.c
+src/sleeptimer.c
