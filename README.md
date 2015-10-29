@@ -11,9 +11,7 @@ It resembles what was (is?) commonly found in modern __televisions__,
 where it usually called a __sleep timer__.
 
 Halttimer's dependencies are minimal and it can be run on any platform where
-xosd and LIRC (optionally) are available. This makes halttimer an ideal candidate for
-home theater PCs (HTPCs), because it is platform-agnostic, which allows
-you to use it with any media center solution.
+xosd and LIRC (optionally) are available. 
 
 ![halttimer](http://static.0x0b.de/misc/halttimer.png)
 
@@ -36,6 +34,19 @@ It can then be built by executing:
 
 Release tarballs that don't require autotools to be installed can be
 [obtained from this site](http://dl.0x0b.de/halttimer).
+
+## Usage
+
+In the simplest case (i.e. no LIRC, systemd poweroff), you can just
+start halttimer by executing
+
+	halttimer
+
+and bind the
+
+	halttimer-action
+
+command to a key of your choice.
 
 ## Manual
     HALTTIMER(1)			 User Commands			  HALTTIMER(1)

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+HPID=$(pidof -s halttimer)
+
+if [ -e ${HPID} ]; then
+	echo "halttimer is not running, cannot send signal."
+	exit 1
+fi
+
+kill -SIGUSR1 ${HPID}

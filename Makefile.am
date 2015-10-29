@@ -24,3 +24,4 @@ README.md: man/halttimer.1
 ACLOCAL_AMFLAGS = -I m4
 
 EXTRA_DIST = config.rpath README.md
+dist_bin_SCRIPTS = scripts/halttimer-action
