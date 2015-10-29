@@ -34,7 +34,7 @@ missing
 compile
 
 src/localedir.h
-src/halttimer
+src/sleeptimer
 src/Makefile
 src/Makefile.in
 
@@ -44,16 +44,16 @@ ABOUT-NLS
 stamp-h1
 
 # Other generated stuff
-man/halttimer.1
+man/sleeptimer.1
 
 # Cache/Temp
 autom4te.cache/
 po/stamp-po
-po/halttimer.pot
+po/sleeptimer.pot
 po/Makevars.template
 po/POTFILES
 po/remove-potcdate.sed
 src/.deps/
 
 # make dist(check)
-halttimer-*.tar.gz
+sleeptimer-*.tar.gz
