@@ -7,4 +7,4 @@ if [ -e ${HPID} ]; then
 	exit 1
 fi
 
-kill -SIGUSR1 ${HPID}
+kill -USR1 ${HPID}
