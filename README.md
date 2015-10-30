@@ -49,7 +49,7 @@ and bind the
 command to a key of your choice.
 
 ## Manual
-    SLEEPTIMER(1)			 User Commands			  SLEEPTIMER(1)
+    SLEEPTIMER(1)			 User Commands			 SLEEPTIMER(1)
     
     
     
@@ -107,15 +107,15 @@ command to a key of your choice.
            using 'systemctl poweroff' and there is nothing more to configure.
     
            On  older  systems,  this  can  be  done in many different ways, but by
-           default, sleeptimer executes 'sudo halt'. Therefore, the following  line
+           default, sleeptimer executes 'sudo halt'. Therefore, the following line
            must be present in your /etc/sudoers and can be added using visudo(8).
     
            YOU ALL=(ALL) NOPASSWD: /sbin/halt
     
            where YOU is your username.
     
-           Second, sleeptimer can be configured to wait for a LIRC signal, an arbi‐
-           trary command, or both.
+           Second,	sleeptimer  can	 be  configured	 to wait for a LIRC signal, an
+           arbitrary command, or both.
     
            LIRC Configuration
            If LIRC is desired, append the following to your ~/.lircrc
@@ -131,9 +131,15 @@ command to a key of your choice.
            be obtained using irw(1).
     
            Keyboard Configuration
-           You  can	 control  sleeptimer by simply sending the SIGUSR1 signal: kill
-           -USR1 `pidof sleeptimer`.	 This command could be bound to a key on  your
-           keyboard.
+           You can control sleeptimer by executing:
+    
+           sleeptimer-signal
+    
+           or you can simply send the SIGUSR1 signal:
+    
+           kill -USR1 `pidof sleeptimer`.
+    
+           This command could be bound to a key on your keyboard.
     
     AUTHORS
            sleeptimer was written by Fabian Hirschmann <fabian@hirschmann.email>.
@@ -148,7 +154,8 @@ command to a key of your choice.
            sleeptimer -e "systemctl poweroff"
     
            Use a different font:
-           sleeptimer -f "-misc-liberation sans-medium-r-normal--*-360-*-*-p-*-*-*"
+           sleeptimer	 -f	   "-misc-liberation	    sans-medium-r-nor‐
+           mal--*-360-*-*-p-*-*-*"
     
            Set the maximum timeout to 120min with decrements of 10min:
            sleeptimer -m 120 -d 10
@@ -158,4 +165,4 @@ command to a key of your choice.
     
     
     
-    sleeptimer 0.3.2			 October 2015			  SLEEPTIMER(1)
+    sleeptimer 0.4.2		 October 2015			 SLEEPTIMER(1)
