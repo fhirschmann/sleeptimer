@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Fabian Hirschmann <fabian@hirschmann.email>
+# Copyright (c) 2013-2015 Fabian Hirschmann <fabian@hirschmann.email>
 #
 # This file is part of sleeptimer.
 #
@@ -16,7 +16,7 @@
 # along with Sleeptimer.  If not, see <http://www.gnu.org/licenses/>.
 
 # Prelude.
-AC_INIT(sleeptimer, 0.4.1, [fabian@hirschmann.email], [sleeptimer],
+AC_INIT(sleeptimer, 0.4.2, [fabian@hirschmann.email], [sleeptimer],
         http://github.com/fhirschmann/sleeptimer.git)
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 AM_GNU_GETTEXT_VERSION([0.19.6])
