@@ -16,7 +16,7 @@
 # along with Sleeptimer.  If not, see <http://www.gnu.org/licenses/>.
 
 # Prelude.
-AC_INIT(sleeptimer, 0.3.2, [fabian@hirschmann.email], [sleeptimer],
+AC_INIT(sleeptimer, 0.4.1, [fabian@hirschmann.email], [sleeptimer],
         http://github.com/fhirschmann/sleeptimer.git)
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 AM_GNU_GETTEXT_VERSION([0.19.6])
