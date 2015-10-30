@@ -47,9 +47,13 @@ using
 .B Keyboard Configuration
 .br
 You can control sleeptimer by executing:
-.I sleeptimer-action
+.LP
+.I sleeptimer-signal
+.LP
 or you can simply send the SIGUSR1 signal:
+.LP
 .I kill -USR1 `pidof sleeptimer`.
+.LP
 This command could be bound to a key on your keyboard.
 [see also]
 .BR irw (1), visudo(8).
